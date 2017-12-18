@@ -1,0 +1,130 @@
+<div id="modal_elemento" class="modal" uk-modal>
+    <div class="uk-modal-dialog">
+    	<form class="uk-form-horizontal uk-margin-large">
+	        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+	        <div class="uk-modal-header">
+	            <h2 class="uk-modal-title">Agregar elemento</h2>
+	        </div>
+
+	        <div class="uk-modal-body" uk-overflow-auto>
+	        	<div class="uk-margin">
+			        <label class="uk-form-label" for="select_tipo_elemento">Tipo de elemento *</label>
+			        <div class="uk-form-controls">
+			            <select class="uk-select" id="select_tipo_elemento" title="Tipo de elemento" autofocus>
+			            	<option value="">Seleccione...</option>}
+			            	<?php foreach($this->configuracion_model->obtener("tipos_elementos") as $tipo_elemento){ ?>
+				                <option value="<?php echo $tipo_elemento->Pk_Id; ?>"><?php echo $tipo_elemento->Nombre; ?></option>
+			                <?php } ?>
+			            </select>
+			        </div>
+			    </div>
+			    <div class="uk-margin">
+			        <label class="uk-form-label" for="input_descripcion">Descripción</label>
+			        <div class="uk-form-controls">
+			            <textarea class="uk-textarea" id="input_descripcion" placeholder="En breves palabras" title="Descripción"></textarea>
+			        </div>
+			    </div>
+			    <div class="uk-margin">
+			        <label class="uk-form-label" for="select_oficina">Oficina *</label>
+			        <div class="uk-form-controls">
+			            <select class="uk-select" id="select_oficina" title="Oficina">
+			            	<option value="">Seleccione...</option>}
+			            	<?php foreach($this->configuracion_model->obtener("oficinas") as $oficina){ ?>
+				                <option value="<?php echo $oficina->Pk_Id; ?>"><?php echo $oficina->Nombre; ?></option>
+			                <?php } ?>
+			            </select>
+			        </div>
+			    </div>
+			    <div class="uk-margin">
+			        <label class="uk-form-label" for="select_area">Área *</label>
+			        <div class="uk-form-controls">
+			            <select class="uk-select" id="select_area" title="Área">
+			            	<option value="">Elija primero una oficina...</option>}
+			            </select>
+			        </div>
+			    </div>
+			    <div class="uk-margin">
+			        <label class="uk-form-label" for="select_marca">Marca *</label>
+			        <div class="uk-form-controls">
+			            <select class="uk-select" id="select_marca" title="Marca">
+			            	<option value="">Seleccione...</option>}
+			            	<?php foreach($this->configuracion_model->obtener("marcas") as $marca){ ?>
+				                <option value="<?php echo $marca->Pk_Id; ?>"><?php echo $marca->Nombre; ?></option>
+			                <?php } ?>
+			            </select>
+			        </div>
+			    </div>
+			    <div class="uk-margin">
+			        <label class="uk-form-label" for="select_modelo">Modelo *</label>
+			        <div class="uk-form-controls">
+			            <select class="uk-select" id="select_modelo" title="Modelo">
+			            	<option value="">Elija primero una marca...</option>}
+			            </select>
+			        </div>
+			    </div>
+			    <div class="uk-margin">
+			        <label class="uk-form-label" for="input_cantidad">Cantidad *</label>
+			        <div class="uk-form-controls">
+			            <input class="uk-input" id="input_cantidad" type="number" min="0" title="Cantidad">
+			        </div>
+			    </div>
+			    <div class="uk-margin">
+			        <label class="uk-form-label" for="input_fecha_compra">Fecha de compra *</label>
+			        <div class="uk-form-controls">
+			            <input class="uk-input" type="date" id="input_fecha_compra" title="Fecha de compra">
+			        </div>
+			    </div>
+			    <div class="uk-margin">
+			        <label class="uk-form-label" for="select_proveedor">Proveedor *</label>
+			        <div class="uk-form-controls">
+			            <select class="uk-select" id="select_proveedor" title="Proveedor">
+			            	<option value="">Seleccione...</option>}
+			            	<?php foreach($this->configuracion_model->obtener("proveedores") as $proveedor){ ?>
+				                <option value="<?php echo $proveedor->Pk_Id; ?>"><?php echo $proveedor->Nombre; ?></option>
+			                <?php } ?>
+			            </select>
+			        </div>
+			    </div>
+	        </div>
+
+	        <div class="uk-modal-footer uk-text-right">
+	            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+	            <button class="uk-button uk-button-primary" type="submit" onCLick="javascript:guardar()">Guardar</button>
+	        </div>
+		</form>
+    </div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		UIkit.modal("#modal_elemento").show();
+
+		$("#select_marca").on("change", function(){
+			datos = {
+				url: "<?php echo site_url('configuracion/obtener'); ?>",
+				tipo: "modelos",
+				id: $(this).val(),
+				elemento_padre: $("#select_marca"),
+				elemento_hijo: $("#select_modelo"),
+				mensaje_padre: "Elija primero una marca...",
+				mensaje_hijo: "Elija un modelo..."
+			}
+			cargar_lista_desplegable(datos);
+		});
+
+		// Cuando se elija la oficina, se cargan las áreas de esa oficina
+		$("#select_oficina").on("change", function(){
+			datos = {
+				url: "<?php echo site_url('configuracion/obtener'); ?>",
+				tipo: "areas",
+				id: $(this).val(),
+				elemento_padre: $("#select_oficina"),
+				elemento_hijo: $("#select_area"),
+				mensaje_padre: "Elija primero una oficina...",
+				mensaje_hijo: "Elija el área..."
+			}
+			cargar_lista_desplegable(datos);
+		});
+	})
+</script>

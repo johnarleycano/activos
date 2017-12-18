@@ -6,6 +6,7 @@
 
 <!-- Estilos -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/uikit.min.css" /><!-- Estilos para UI Kit -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/estilos.css" /><!-- Estilos generales -->
 
 <!-- Scripts -->
 <script src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script> <!-- jQuery -->

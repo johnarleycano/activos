@@ -1,0 +1,44 @@
+<?php
+defined('BASEPATH') OR exit('El acceso directo a este archivo no está permitido');
+
+/**
+ * @author: 	John Arley Cano Salinas
+ * Fecha: 		15 de diciembre de 2017
+ * Programa:  	Activos | Módulo inicial
+ *            	Permite visualizar estados
+ *            	e información a manera de resumen
+ * Email: 		johnarleycano@hotmail.com
+ */
+class Inicio extends CI_Controller {
+	/**
+	 * Función constructora de la clase. Se hereda el mismo constructor 
+	 * de la clase para evitar sobreescribirlo y de esa manera 
+     * conservar el funcionamiento de controlador.
+	 */
+	function __construct() {
+        parent::__construct();
+
+        // Carga de modelos
+        $this->load->model(array('inicio_model'));
+    }
+
+    /**
+     * Interfaz inicial
+     * 
+     * @return [void]
+     */
+	function index()
+	{
+		// // Si no ha iniciado sesión o es un usuario diferente al 1,
+  //       // redirecciona al inicio de sesión
+  //       if(!$this->session->userdata('Pk_Id_Usuario')){
+  //           redirect('sesion/cerrar');
+  //       }
+
+        $this->data['titulo'] = 'Inicio';
+        $this->data['contenido_principal'] = 'inicio/index';
+        $this->load->view('core/template', $this->data);
+	}
+}
+/* Fin del archivo Inicio.php */
+/* Ubicación: ./application/controllers/Inicio.php */
