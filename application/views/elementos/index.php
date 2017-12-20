@@ -20,7 +20,6 @@
 			"select_tipo_elemento": $("#select_tipo_elemento").val(),
 			"select_modelo": $("#select_modelo").val(),
 			"select_proveedor": $("#select_proveedor").val(),
-			"input_cantidad": $("#input_cantidad").val(),
 			"input_fecha_compra": $("#input_fecha_compra").val(),
 		}
 		// imprimir(campos_obligatorios);
@@ -36,7 +35,6 @@
 	    	"Fk_Id_Area": $("#select_area").val(),
 	    	"Fk_Id_Modelo": $("#select_modelo").val(),
 	    	"Fk_Id_Proveedor": $("#select_proveedor").val(),
-	    	"Cantidad": $("#input_cantidad").val(),
 	    	"Fecha": "<?php echo date("Y-m-d h:i:s"); ?>",
 	    	"Fecha_Compra": $("#input_fecha_compra").val(),
 	    	// "Fk_Id_Usuario": "<?php // echo $this->session->userdata('Pk_Id_Usuario'); ?>",
@@ -71,7 +69,25 @@
 	}
 
 	$(document).ready(function(){
+		// Botones del menú
+		botones(Array("crear"));
+
 		// Por defecto se carga el listado de registros
 		listar();
+		
+		// Cuando se elija la oficina, se cargan las áreas de esa oficina
+		$("#select_oficina").on("change", function(){
+		    imprimir("cambiando")
+			// datos = {
+			// 	url: "<?php // echo site_url('configuracion/obtener'); ?>",
+			// 	tipo: "areas",
+			// 	id: $(this).val(),
+			// 	elemento_padre: $("#select_oficina"),
+			// 	elemento_hijo: $("#select_area"),
+			// 	mensaje_padre: "Elija primero una oficina...",
+			// 	mensaje_hijo: "Elija el área..."
+			// }
+			// cargar_lista_desplegable(datos);
+		});
 	});
 </script>

@@ -40,7 +40,7 @@
 			        <label class="uk-form-label" for="select_area">Área *</label>
 			        <div class="uk-form-controls">
 			            <select class="uk-select" id="select_area" title="Área">
-			            	<option value="">Elija primero una oficina...</option>}
+			            	<option value="">Elija primero una oficina...</option>
 			            </select>
 			        </div>
 			    </div>
@@ -48,7 +48,7 @@
 			        <label class="uk-form-label" for="select_marca">Marca *</label>
 			        <div class="uk-form-controls">
 			            <select class="uk-select" id="select_marca" title="Marca">
-			            	<option value="">Seleccione...</option>}
+			            	<option value="">Seleccione...</option>
 			            	<?php foreach($this->configuracion_model->obtener("marcas") as $marca){ ?>
 				                <option value="<?php echo $marca->Pk_Id; ?>"><?php echo $marca->Nombre; ?></option>
 			                <?php } ?>
@@ -59,14 +59,8 @@
 			        <label class="uk-form-label" for="select_modelo">Modelo *</label>
 			        <div class="uk-form-controls">
 			            <select class="uk-select" id="select_modelo" title="Modelo">
-			            	<option value="">Elija primero una marca...</option>}
+			            	<option value="">Elija primero una marca...</option>
 			            </select>
-			        </div>
-			    </div>
-			    <div class="uk-margin">
-			        <label class="uk-form-label" for="input_cantidad">Cantidad *</label>
-			        <div class="uk-form-controls">
-			            <input class="uk-input" id="input_cantidad" type="number" min="0" title="Cantidad">
 			        </div>
 			    </div>
 			    <div class="uk-margin">
@@ -99,20 +93,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		UIkit.modal("#modal_elemento").show();
-
-		$("#select_marca").on("change", function(){
-			datos = {
-				url: "<?php echo site_url('configuracion/obtener'); ?>",
-				tipo: "modelos",
-				id: $(this).val(),
-				elemento_padre: $("#select_marca"),
-				elemento_hijo: $("#select_modelo"),
-				mensaje_padre: "Elija primero una marca...",
-				mensaje_hijo: "Elija un modelo..."
-			}
-			cargar_lista_desplegable(datos);
-		});
-
+		
 		// Cuando se elija la oficina, se cargan las áreas de esa oficina
 		$("#select_oficina").on("change", function(){
 			datos = {
@@ -126,5 +107,19 @@
 			}
 			cargar_lista_desplegable(datos);
 		});
-	})
+
+		// Cuando se elija la marca, se cargan sus modelos
+		$("#select_marca").on("change", function(){
+			datos = {
+				url: "<?php echo site_url('configuracion/obtener'); ?>",
+				tipo: "modelos",
+				id: $(this).val(),
+				elemento_padre: $("#select_marca"),
+				elemento_hijo: $("#select_modelo"),
+				mensaje_padre: "Elija primero una marca...",
+				mensaje_hijo: "Elija un modelo..."
+			}
+			cargar_lista_desplegable(datos);
+		});
+	});
 </script>
