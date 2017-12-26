@@ -15,6 +15,10 @@ Class Elementos_model extends CI_Model{
     function insertar($tipo, $datos)
     {
         switch ($tipo) {
+            case "asignacion_usuario":
+                return $this->db->insert('elementos_usuarios', $datos);
+            break;
+
             case "elemento":
                 return $this->db->insert('elementos', $datos);
             break;
@@ -33,22 +37,60 @@ Class Elementos_model extends CI_Model{
     function obtener($tipo, $id = null)
     {
         switch ($tipo) {
+            case 'elemento':
+                return $this->db
+                    ->where("Pk_Id", $id)
+                    ->get("elementos")->row();
+            break;
+
             case 'elementos':
                 $this->db
                     ->select(array(
                         'e.Pk_Id',
+                        'LPAD(e.Pk_Id,4,0) Codigo',
                         'te.Nombre',
-                        'e.Descripcion',
                         'ma.Nombre Marca',
                         'mo.Nombre Modelo',
+                        'e.Fk_Id_Area',
+                        'ee.Nombre Estado',
+                        'ee.Clase Color',
+                        'e.Fk_Id_Usuario',
+                        // 'CONCAT(u.Nombres, " ", u.Apellidos) Usuario',
+                        'ta.Nombre Area',
+                        'o.Nombre Oficina',
                         ))
                     ->from('elementos e')
                     ->join('tipos_elementos te', 'e.Fk_Id_Tipo_Elemento = te.Pk_Id')
                     ->join('modelos mo', 'e.Fk_Id_Modelo = mo.Pk_Id')
-                    ->join('marcas ma', 'mo.Fk_Id_Marca = ma.Pk_Id');
+                    ->join('marcas ma', 'mo.Fk_Id_Marca = ma.Pk_Id')
+                    ->join('estados_elementos ee', 'e.Fk_Id_Estado = ee.Pk_Id')
+                    // ->join('configuracion.usuarios u', 'e.Fk_Id_Usuario = u.Pk_Id', 'LEFT')
+                    ->join('configuracion.areas ar', 'e.Fk_Id_Area = ar.Pk_Id')
+                    ->join('configuracion.tipos_areas ta', 'e.Fk_Id_Area = ta.Pk_Id')
+                    ->join('configuracion.oficinas o', 'ar.Fk_Id_Oficina = o.Pk_Id')
+                    ;
                 
                 // return $this->db_configuracion->get_compiled_select(); // string de la consulta
                 return $this->db->get()->result();
+            break;
+
+            case 'usuario_elemento':
+                $this->db
+                    ->select(array(
+                        'u.Pk_Id',
+                        'CONCAT(u.Nombres, " ", u.Apellidos) Nombres',
+                        'eu.Fecha_Entrega',
+                        'eu.Observaciones',
+                        ))
+                    ->from('elementos_usuarios eu')
+                    ->where('eu.Fk_Id_Elemento', $id)
+                    ->order_by('eu.Fecha_Entrega', "DESC")
+                    ->limit(1)
+                    ->join('configuracion.usuarios u', 'eu.Fk_Id_Usuario = u.Pk_Id')
+                    ;
+
+                return $this->db->get()->row();
+                // return $this->db->get_compiled_select(); // string de la consulta
             break;
         }
     }
