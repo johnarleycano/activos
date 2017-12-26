@@ -68,9 +68,6 @@ function botones(parametros)
 
 function cargar_interfaz(contenedor, url, datos)
 {
-    // Configuración de los botones (de esta manera entran desactivados)
-    // botones();
-
     // Carga de la interfaz
     $("#" + contenedor).load(url, datos);
 }
@@ -86,7 +83,6 @@ function cargar_interfaz(contenedor, url, datos)
 function cargar_lista_desplegable(datos){
     // Si no se elige ninguna opción, se limpia la lista
     if (datos.elemento_padre.val() == "") {
-        imprimir("algo")
         limpiar_lista(datos.elemento_hijo, datos.mensaje_padre);
 
         return false;
@@ -97,10 +93,13 @@ function cargar_lista_desplegable(datos){
 
     // Consulta de los valores, se recorren y se alimenta la lista desplegable
     valores = ajax(datos.url, {"tipo": datos.tipo, "id": datos.id}, "JSON");
-    imprimir(valores);
+    // imprimir(valores);
 
     $.each(valores, function(clave, valor) {
+        imprimir(valor)
         datos.elemento_hijo.append("<option value='" + valor.Pk_Id + "'>" + valor.Nombre + "</option>");
+        // datos.elemento_hijo.append($("<option></option>").attr("value",valor.Pk_Id).text(valor.Nombre)); 
+        // $("#select_area").append("<option value='0'>ok</option>"); 
     });
 
     // Se pone el foco en la siguiente lista desplegable
@@ -153,9 +152,9 @@ function imprimir_notificacion(mensaje, tipo = null)
 	}
 
 	// Si la notificación es una un mensaje de éxito
-	if(tipo == "success"){
+	// if(tipo = "success"){
 		datos.timeout = 5000;
-	}
+	// }
 
 	// Se lanza la notificación
 	UIkit.notification(datos);
@@ -185,6 +184,19 @@ function redireccionar(url){
 }
 
 /**
+ * Pone un valor por defecto a un select
+ * 
+ * @param  {string} elemento Nombre del select
+ * @param  {string} valor    Valor del option
+ *
+ * @return [void]
+ */
+function select_por_defecto(elemento, valor)
+{
+    $('#' + elemento + ' option[value="' + valor + '"]').attr("selected", true);
+}
+
+/**
  * Recorre los campos y obligatorios buscando
  * que todos estén diligenciados
  * 
@@ -210,7 +222,6 @@ function validar_campos_obligatorios(campos)
         cerrar_notificaciones();
 
         for (var i = 0; i < campos_vacios.length; i++){
-            imprimir($("#" + campos_vacios[i]).attr("id"))
 			imprimir_notificacion("El valor de " + $("#" + campos_vacios[i]).attr("title")  + " no puede estar vacío", "warning");
 		}
 	}

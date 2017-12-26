@@ -52,6 +52,12 @@ class Elementos extends CI_Controller {
             $tipo = $this->input->post("tipo");
 
             switch ($tipo) {
+                case "index_asignar_usuario":
+                    $this->data["id_elemento"] = $this->input->post("id_elemento");
+
+                    $this->load->view("elementos/asignar_usuario", $this->data);
+                break;
+
                 case "index_crear":
                     $this->load->view("elementos/crear");
                 break;
@@ -81,6 +87,16 @@ class Elementos extends CI_Controller {
 
             switch ($tipo) {
                 case "elemento":
+                    // Se inserta el registro y log en base de datos
+                    if ($this->elementos_model->insertar($tipo, $datos)) {
+                        echo $id = $this->db->insert_id();
+
+                        // Se inserta el registro de logs enviando tipo de log y dato adicional si corresponde
+                        // $this->logs_model->insertar(3, "Medición temporal $id");
+                    }
+                break;
+                
+                case "asignacion_usuario":
                     // Se inserta el registro y log en base de datos
                     if ($this->elementos_model->insertar($tipo, $datos)) {
                         echo $id = $this->db->insert_id();

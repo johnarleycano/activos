@@ -39,6 +39,18 @@ Class Configuracion_model extends CI_Model{
 		        return $this->db_configuracion->get()->result();
 			break;
 
+			case 'colores':
+				return $this->db
+					->order_by("Nombre")
+					->get("colores")->result();
+			break;
+
+			case 'estados_elementos':
+				return $this->db
+					->order_by("Nombre")
+					->get("estados_elementos")->result();
+			break;
+
 			case 'marcas':
 				return $this->db
 					->order_by("Nombre")
@@ -69,6 +81,13 @@ Class Configuracion_model extends CI_Model{
 				return $this->db
 					->order_by("Nombre")
 					->get("tipos_elementos")->result();
+			break;
+
+			case 'usuarios_activos':
+				return $this->db_configuracion
+					->where("Estado", 1)
+					->order_by("Nombres, Apellidos")
+					->get("usuarios")->result();
 			break;
 		}
 	}
