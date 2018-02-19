@@ -48,7 +48,7 @@ Class Elementos_model extends CI_Model{
                     ->select(array(
                         'e.Pk_Id',
                         'LPAD(e.Pk_Id,4,0) Codigo',
-                        'te.Nombre',
+                        // 'te.Nombre',
                         'ma.Nombre Marca',
                         'mo.Nombre Modelo',
                         'e.Fk_Id_Area',
@@ -60,7 +60,7 @@ Class Elementos_model extends CI_Model{
                         'o.Nombre Oficina',
                         ))
                     ->from('elementos e')
-                    ->join('tipos_elementos te', 'e.Fk_Id_Tipo_Elemento = te.Pk_Id')
+                    // ->join('tipos_elementos te', 'e.Fk_Id_Tipo_Elemento = te.Pk_Id')
                     ->join('modelos mo', 'e.Fk_Id_Modelo = mo.Pk_Id')
                     ->join('marcas ma', 'mo.Fk_Id_Marca = ma.Pk_Id')
                     ->join('estados_elementos ee', 'e.Fk_Id_Estado = ee.Pk_Id')

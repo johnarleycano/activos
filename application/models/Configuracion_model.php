@@ -32,11 +32,32 @@ Class Configuracion_model extends CI_Model{
 			            ))
 		            ->from('areas a')
 		            ->join('tipos_areas ta', 'a.Fk_Id_Tipo_Area = ta.Pk_Id')
-		            ->where('a.Fk_Id_Oficina', $id)
+		            ->where('a.Fk_Id_Bloque', $id)
 		            ->order_by('ta.Nombre');
 		        
 		        // return $this->db_configuracion->get_compiled_select(); // string de la consulta
 		        return $this->db_configuracion->get()->result();
+			break;
+
+			case 'bloques':
+				$this->db_configuracion
+		        	->select(array(
+			            'b.Pk_Id',
+						'tb.Nombre'
+		            ))
+		            ->from('bloques b')
+		            ->join('tipos_bloques tb', 'b.Fk_Id_Tipo_Bloque = tb.Pk_Id')
+		            ->where('b.Fk_Id_Oficina', $id)
+		            ->order_by('tb.Nombre');
+
+	            // return $this->db_configuracion->get_compiled_select(); // string de la consulta
+		        return $this->db_configuracion->get()->result();
+			break;
+
+			case 'clasificaciones':
+				return $this->db
+					->order_by("Nombre")
+					->get("clasificacion_elementos")->result();
 			break;
 
 			case 'colores':
@@ -77,10 +98,10 @@ Class Configuracion_model extends CI_Model{
 					->get("proveedores")->result();
 			break;
 
-			case 'tipos_elementos':
+			case 'tipos_activos':
 				return $this->db
 					->order_by("Nombre")
-					->get("tipos_elementos")->result();
+					->get("tipos_activos")->result();
 			break;
 
 			case 'usuarios_activos':

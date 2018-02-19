@@ -40,6 +40,14 @@ class Configuracion extends CI_Controller {
 					print json_encode($this->configuracion_model->obtener($tipo, $id));
 				break;
 
+                case "bloques":
+					print json_encode($this->configuracion_model->obtener($tipo, $id));
+				break;
+
+                case "clasificaciones":
+					print json_encode($this->configuracion_model->obtener($tipo, $id));
+				break;
+
                 case "modelos":
 					print json_encode($this->configuracion_model->obtener($tipo, $id));
 				break;

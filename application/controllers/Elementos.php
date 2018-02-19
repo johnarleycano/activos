@@ -30,12 +30,6 @@ class Elementos extends CI_Controller {
      */
 	function index()
 	{
-		// // Si no ha iniciado sesión o es un usuario diferente al 1,
-  //       // redirecciona al inicio de sesión
-  //       if(!$this->session->userdata('Pk_Id_Usuario')){
-  //           redirect('sesion/cerrar');
-  //       }
-
         $this->data['titulo'] = 'Elementos';
         $this->data['contenido_principal'] = 'elementos/index';
         $this->load->view('core/template', $this->data);
@@ -58,10 +52,6 @@ class Elementos extends CI_Controller {
                     $this->load->view("elementos/asignar_usuario", $this->data);
                 break;
 
-                case "index_crear":
-                    $this->load->view("elementos/crear");
-                break;
-
                 case "index_lista":
                     $this->load->view("elementos/listar");
                 break;
@@ -70,6 +60,19 @@ class Elementos extends CI_Controller {
             // Si la peticion fue hecha mediante navegador, se redirecciona a la pagina de inicio
             redirect('');
         }
+    }
+
+    /**
+     * Interfaz de creación y edición de
+     * elementos
+     * 
+     * @return [void]
+     */
+    function crear()
+    {
+        $this->data['titulo'] = 'Elementos';
+        $this->data['contenido_principal'] = 'elementos/crear';
+        $this->load->view('core/template', $this->data);
     }
 
     /**
