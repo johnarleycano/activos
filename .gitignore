@@ -1,25 +1,17 @@
-# CakePHP 3
+#js/commits.txt
+#inicio.html
+#index.php
 
-/vendor/*
-/config/app.php
 
-/tmp/cache/models/*
-!/tmp/cache/models/empty
-/tmp/cache/persistent/*
-!/tmp/cache/persistent/empty
-/tmp/cache/views/*
-!/tmp/cache/views/empty
-/tmp/sessions/*
-!/tmp/sessions/empty
-/tmp/tests/*
-!/tmp/tests/empty
+# Creado por https://www.gitignore.io/api/codeigniter
 
-/logs/*
-!/logs/empty
+### Archivos ###
+#index.php
+#commits.txt
 
-# CakePHP 2
+### Carpetas ###
+##user_guide/
+##application/config/
 
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
+# Fin de https://www.gitignore.io/api/codeigniter
+index\.php
