@@ -31,12 +31,6 @@ class Inicio extends CI_Controller {
      */
 	function index()
 	{
-		// // Si no ha iniciado sesión o es un usuario diferente al 1,
-  //       // redirecciona al inicio de sesión
-  //       if(!$this->session->userdata('Pk_Id_Usuario')){
-  //           redirect('sesion/cerrar');
-  //       }
-
         $this->data['titulo'] = 'Inicio';
         $this->data['contenido_principal'] = 'inicio/index';
         $this->load->view('core/template', $this->data);
