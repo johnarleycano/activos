@@ -3,6 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
+| Id del Sistema de Activos Fijos
+|--------------------------------------------------------------------------
+|
+| El id de la aplicacion es usado para los permisos en la base de datos Configuracion
+| 
+|
+*/
+$config['id_aplicacion'] = 12;
+$config['id_aplicacion_sesion'] = 15;
+
+/*
+|--------------------------------------------------------------------------
 | Base Site URL
 |--------------------------------------------------------------------------
 |
