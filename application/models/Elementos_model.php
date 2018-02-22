@@ -47,30 +47,32 @@ Class Elementos_model extends CI_Model{
                 $this->db
                     ->select(array(
                         'e.Pk_Id',
-                        'LPAD(e.Pk_Id,4,0) Codigo',
-                        // 'te.Nombre',
+                        'e.Fk_Id_Estado',
+                        'LPAD( e.Pk_Id, 4, 0 ) Codigo',
                         'ma.Nombre Marca',
                         'mo.Nombre Modelo',
                         'e.Fk_Id_Area',
-                        'ee.Nombre Estado',
+                        'ta.Nombre Area',
                         'ee.Clase Color',
                         'e.Fk_Id_Usuario',
-                        // 'CONCAT(u.Nombres, " ", u.Apellidos) Usuario',
-                        'ta.Nombre Area',
-                        'o.Nombre Oficina',
-                        ))
+                        'tb.Nombre Bloque',
+                        'o.Nombre Oficina', 
+                        'ee.Nombre Estado', 
+                        'ce.Nombre',
+                    ))
                     ->from('elementos e')
-                    // ->join('tipos_elementos te', 'e.Fk_Id_Tipo_Elemento = te.Pk_Id')
                     ->join('modelos mo', 'e.Fk_Id_Modelo = mo.Pk_Id')
                     ->join('marcas ma', 'mo.Fk_Id_Marca = ma.Pk_Id')
                     ->join('estados_elementos ee', 'e.Fk_Id_Estado = ee.Pk_Id')
-                    // ->join('configuracion.usuarios u', 'e.Fk_Id_Usuario = u.Pk_Id', 'LEFT')
-                    ->join('configuracion.areas ar', 'e.Fk_Id_Area = ar.Pk_Id')
-                    ->join('configuracion.tipos_areas ta', 'e.Fk_Id_Area = ta.Pk_Id')
-                    ->join('configuracion.oficinas o', 'ar.Fk_Id_Oficina = o.Pk_Id')
+                    ->join('clasificacion_elementos ce', 'e.Fk_Id_Clasificacion = ce.Pk_Id')
+                    ->join('configuracion.areas a', 'e.Fk_Id_Area = a.Pk_Id')
+                    ->join('configuracion.tipos_areas ta', 'a.Fk_Id_Tipo_Area = ta.Pk_Id')
+                    ->join('configuracion.bloques b', 'a.Fk_Id_Bloque = b.Pk_Id')
+                    ->join('configuracion.tipos_bloques tb', 'b.Fk_Id_Tipo_Bloque = tb.Pk_Id')
+                    ->join('configuracion.oficinas o', 'b.Fk_Id_Oficina = o.Pk_Id')
                     ;
                 
-                // return $this->db_configuracion->get_compiled_select(); // string de la consulta
+                // return $this->db->get_compiled_select(); // string de la consulta
                 return $this->db->get()->result();
             break;
 
