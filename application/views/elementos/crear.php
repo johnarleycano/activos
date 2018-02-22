@@ -149,9 +149,9 @@
 		// imprimir(campos_obligatorios);
 		
 		// Si existen campos obligatorios sin diligenciar
-		// if(validar_campos_obligatorios(campos_obligatorios)){
-		// 	return false;
-		// }
+		if(validar_campos_obligatorios(campos_obligatorios)){
+			return false;
+		}
 
 		datos = {
 	    	"Fk_Id_Clasificacion": $("#select_clasificacion").val(),
@@ -160,21 +160,19 @@
 	    	"Fk_Id_Estado": $("#select_estado").val(),
 	    	"Fk_Id_Area": $("#select_area").val(),
 	    	"Fk_Id_Proveedor": $("#select_proveedor").val(),
-	    	"Fecha": "<?php echo date("Y-m-d h:i:s"); ?>",
+	    	"Fecha": "<?php echo date("Y-m-d H:i:s"); ?>",
 	    	"Fecha_Compra": $("#input_fecha_compra").val(),
 	    	"Valor": $("#input_valor").val(),
 	 //    	// "Fk_Id_Usuario": "<?php // echo $this->session->userdata('Pk_Id_Usuario'); ?>",
 	    }
 	    // imprimir(datos);
 
-        id = ajax("<?php echo site_url('elementos/insertar'); ?>", {"tipo": "elemento", "datos": datos}, 'HTML');
-        imprimir(id);
+        ajax("<?php echo site_url('elementos/insertar'); ?>", {"tipo": "elemento", "datos": datos}, 'HTML');
         
+		cerrar_notificaciones();
+		imprimir_notificacion("Guardado.", "success");
 
-		// cerrar_notificaciones();
-		// imprimir_notificacion("Guardado.", "success");
-
-		// listar();
+		redireccionar("<?php echo site_url('elementos'); ?>");
 	}
 
 	$(document).ready(function(){

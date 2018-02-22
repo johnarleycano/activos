@@ -32,7 +32,7 @@
 	    	"Fk_Id_Elemento": id_elemento,
 	    	"Fk_Id_Usuario": $("#select_usuario").val(),
 	    	"Fecha_Entrega": $("#input_fecha_entrega").val(),
-	    	"Fecha": "<?php echo date("Y-m-d h:i:s"); ?>",
+	    	"Fecha": "<?php echo date("Y-m-d H:i:s"); ?>",
 	    	"Observaciones": $.trim($("#input_observaciones").val()),
 	    	// "Fk_Id_Usuario": "<?php // echo $this->session->userdata('Pk_Id_Usuario'); ?>",
 	    }
@@ -44,7 +44,7 @@
 		cerrar_notificaciones();
 		imprimir_notificacion("Guardado.", "success");
 
-		redireccionar("<?php echo site_url('elemento'); ?>");
+		redireccionar("<?php echo site_url('elementos'); ?>");
 	}
 
 	function usuario(id_elemento)
