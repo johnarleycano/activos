@@ -96,7 +96,6 @@ function cargar_lista_desplegable(datos){
     // imprimir(valores);
 
     $.each(valores, function(clave, valor) {
-        imprimir(valor)
         datos.elemento_hijo.append("<option value='" + valor.Pk_Id + "'>" + valor.Nombre + "</option>");
         // datos.elemento_hijo.append($("<option></option>").attr("value",valor.Pk_Id).text(valor.Nombre)); 
         // $("#select_area").append("<option value='0'>ok</option>"); 
