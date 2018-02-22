@@ -25,7 +25,7 @@
                 <!-- <li class="uk-nav-divider"></li> -->
                 <!-- <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: copy"></span> Reportes</a></li> -->
                 <!-- <li><a href="<?php // echo site_url('configuracion'); ?>"><span class="uk-margin-small-right" uk-icon="icon: cog"></span> Configuración</a></li> -->
-                <!-- <li><a href="<?php // echo site_url('sesion/cerrar'); ?>"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Salir</a></li> -->
+                <li><a href="<?php echo site_url('sesion/cerrar'); ?>"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Salir</a></li>
             </ul>
         </div>
     </div>
