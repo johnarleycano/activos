@@ -1,5 +1,9 @@
+<?php $elementos = $this->elementos_model->obtener("elementos"); ?>
+
+<div id="cont_modal"></div>
+
 <div class="uk-child-width-1-3@m" uk-grid uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-card; delay: 100; repeat: true">
-    <?php foreach ($this->elementos_model->obtener("elementos") as $elemento) { ?>
+    <?php foreach ($elementos as $elemento) { ?>
 	    <div>
 	        <div class="uk-card uk-card-default uk-width-1-1@m">
 			    <div class="uk-card-header">
@@ -17,7 +21,7 @@
 			    <div class="uk-card-footer">
 			        <div class="uk-text-right">
 			        	<?php $usuario = $this->elementos_model->obtener("usuario_elemento", $elemento->Pk_Id); ?>
-		                <span style="cursor: pointer;" title="Cambiar propietario" uk-tooltip="pos: top-center" onClick="javascript:usuario(<?php echo $elemento->Pk_Id; ?>)"> <span uk-icon="icon: user"></span> <?php echo (isset($usuario->Pk_Id)) ? $usuario->Nombres : "" ; ?></span>
+		                <span style="cursor: pointer;" title="Cambiar propietario" uk-tooltip="pos: top-center" onClick="javascript:ver_usuario(<?php echo $elemento->Pk_Id; ?>)"> <span uk-icon="icon: user"></span> <?php echo (isset($usuario->Pk_Id)) ? $usuario->Nombres : "" ; ?></span>
 		            </div>
 			    </div>
 			</div>

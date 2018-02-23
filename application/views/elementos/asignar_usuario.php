@@ -13,7 +13,7 @@
 				<div class="uk-margin">
 			        <label class="uk-form-label" for="select_usuario">Usuario *</label>
 			        <div class="uk-form-controls">
-			            <select class="uk-select" id="select_usuario" title="Tipo de elemento" autofocus>
+			            <select class="uk-select" id="select_usuario" title="Usuario" autofocus>
 			            	<option value="">Seleccione...</option>}
 			            	<?php foreach($this->configuracion_model->obtener("usuarios_activos") as $usuario){ ?>
 				                <option value="<?php echo $usuario->Pk_Id; ?>"><?php echo "$usuario->Nombres $usuario->Apellidos"; ?></option>
