@@ -5,6 +5,23 @@ Class Elementos_model extends CI_Model{
     }
 
     /**
+     * Actualiza los registros en base de datos
+     * 
+     * @param  [string]     $tipo       [tipo de actualización]
+     * @param  [int]    $id         [Id del registro actualizar]
+     * @param  [string]     $datos      [Arreglo con datos a actualizar]
+     * 
+     * @return [boolear]        [true, false]
+     */
+    function actualizar($tipo, $id, $datos){
+        switch ($tipo) {
+            case 'elemento':
+                return $this->db->where("Pk_Id", $id)->update('elementos', $datos);
+            break;
+        }
+    }
+
+    /**
      * Permite la inserción de datos en la base de datos 
      * 
      * @param  [string] $tipo  Tipo de inserción
@@ -38,9 +55,24 @@ Class Elementos_model extends CI_Model{
     {
         switch ($tipo) {
             case 'elemento':
-                return $this->db
-                    ->where("Pk_Id", $id)
-                    ->get("elementos")->row();
+                $this->db
+                    ->select(array(
+                        'e.*',
+                        'ce.Fk_Id_Tipo_Activo',
+                        'm.Pk_Id Fk_Id_Marca',
+                        'a.Fk_Id_Bloque',
+                        'b.Fk_Id_Oficina',
+                    ))
+                    ->from('elementos e')
+                    ->join('clasificacion_elementos ce', 'e.Fk_Id_Clasificacion = ce.Pk_Id')
+                    ->join('marcas m', 'e.Fk_Id_Modelo = m.Pk_Id')
+                    ->join('configuracion.areas a', 'e.Fk_Id_Area = a.Pk_Id')
+                    ->join('configuracion.bloques b', 'a.Fk_Id_Bloque = b.Pk_Id')
+                    ->where("e.Pk_Id", $id)
+                ;
+                
+                // return $this->db->get_compiled_select(); // string de la consulta
+                return $this->db->get()->row();
             break;
 
             case 'elementos':

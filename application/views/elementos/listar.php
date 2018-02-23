@@ -19,9 +19,16 @@
 			        </div>
 			    </div>
 			    <div class="uk-card-footer">
-			        <div class="uk-text-right">
+			        <div class="uk-text-left">
 			        	<?php $usuario = $this->elementos_model->obtener("usuario_elemento", $elemento->Pk_Id); ?>
-		                <span style="cursor: pointer;" title="Cambiar propietario" uk-tooltip="pos: top-center" onClick="javascript:ver_usuario(<?php echo $elemento->Pk_Id; ?>)"> <span uk-icon="icon: user"></span> <?php echo (isset($usuario->Pk_Id)) ? $usuario->Nombres : "" ; ?></span>
+
+			        	<span style="cursor: pointer;" title="Ver y editar elemento" uk-tooltip="pos: top-center" onClick="javascript:editar(<?php echo $elemento->Pk_Id; ?>);">
+			        		<i class="fas fa-edit"></i>
+			        	</span>
+			        	
+		                <span style="cursor: pointer;" title="Cambiar propietario" uk-tooltip="pos: top-center" onClick="javascript:ver_usuario(<?php echo $elemento->Pk_Id; ?>)">
+		                	<i class="fas fa-user"></i> <?php echo (isset($usuario->Pk_Id)) ? $usuario->Nombres : "" ; ?>
+		                </span>
 		            </div>
 			    </div>
 			</div>

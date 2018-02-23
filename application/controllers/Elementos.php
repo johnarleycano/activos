@@ -42,6 +42,29 @@ class Elementos extends CI_Controller {
         $this->load->view('core/template', $this->data);
 	}
 
+    /**
+     * Actualización de registros en base de datos
+     * 
+     * @return [void]
+     */
+    function actualizar()
+    {
+         //Se valida que la peticion venga mediante ajax y no mediante el navegador
+        if($this->input->is_ajax_request()){
+            $datos = $this->input->post('datos');
+            $tipo = $this->input->post('tipo');
+
+            switch ($tipo) {
+                case 'elemento':
+                    echo $this->elementos_model->actualizar($tipo, $this->input->post('id_elemento'), $datos);
+                break;
+            }
+        }else{
+            //Si la peticion fue hecha mediante navegador, se redirecciona a la pagina de inicio
+            redirect('');
+        }
+    }
+
 	/**
 	 * Carga de interfaces 
 	 * @return [void]
@@ -77,6 +100,7 @@ class Elementos extends CI_Controller {
      */
     function crear()
     {
+        $this->data['id_elemento'] = $this->uri->segment(3);
         $this->data['titulo'] = 'Elementos';
         $this->data['contenido_principal'] = 'elementos/crear';
         $this->load->view('core/template', $this->data);

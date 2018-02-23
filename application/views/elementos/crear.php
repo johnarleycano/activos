@@ -1,3 +1,9 @@
+<!-- Si tiene id de elemento, lo carga -->
+<?php $elemento = ($id_elemento) ? $this->elementos_model->obtener("elemento", $id_elemento) : null ; ?>
+
+<!-- Id del elemento (cuando se cree el registro) -->
+<input type="hidden" id="id_elemento" value="<?php echo $id_elemento; ?>">
+
 <form>
 	<div class="uk-column-1-2@m uk-column-divider">
 		<h4 class="uk-heading-line uk-text-right"><span>Características</span></h4>
@@ -137,6 +143,8 @@
 	 */
 	function guardar()
 	{
+		let id_elemento = "<?php echo $id_elemento; ?>"
+
 		cerrar_notificaciones();
 		imprimir_notificacion("<div uk-spinner></div> Guardando el elemento...");
 
@@ -165,12 +173,20 @@
 	    	"Fecha": "<?php echo date("Y-m-d H:i:s"); ?>",
 	    	"Fecha_Compra": $("#input_fecha_compra").val(),
 	    	"Valor": $("#input_valor").val(),
-	 //    	// "Fk_Id_Usuario": "<?php // echo $this->session->userdata('Pk_Id_Usuario'); ?>",
+	    	"Fk_Id_Usuario": "<?php echo $this->session->userdata('Pk_Id_Usuario'); ?>",
 	    }
 	    // imprimir(datos);
+	    
+	    // Si trae un id de elemento
+	    if ($("#id_elemento").val() == "") {
+        	id = ajax("<?php echo site_url('elementos/insertar'); ?>", {"tipo": "elemento", "datos": datos}, 'HTML');
 
-        ajax("<?php echo site_url('elementos/insertar'); ?>", {"tipo": "elemento", "datos": datos}, 'HTML');
-        
+        	// Se pone el id en un campo para validar la demás información que se la asocie
+	    	$("#id_elemento").val(id);
+	    } else {
+        	ajax("<?php echo site_url('elementos/actualizar'); ?>", {"tipo": "elemento", "datos": datos, "id_elemento": $("#id_elemento").val()}, 'HTML');
+	    }
+
 		cerrar_notificaciones();
 		imprimir_notificacion("Guardado.", "success");
 
@@ -241,3 +257,73 @@
 		});
 	})
 </script>
+
+<!-- Cuando tiene un elemento -->
+<?php if ($elemento) { ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#input_fecha_compra").val("<?php echo $elemento->Fecha_Compra; ?>");
+            $("#input_valor").val("<?php echo $elemento->Valor; ?>");
+
+            select_por_defecto("select_color", <?php echo $elemento->Fk_Id_Color; ?>)
+            select_por_defecto("select_estado", <?php echo $elemento->Fk_Id_Estado; ?>)
+            select_por_defecto("select_proveedor", <?php echo $elemento->Fk_Id_Proveedor; ?>)
+
+        	// Clasificación
+        	datos = {
+                url: "<?php echo site_url('configuracion/obtener'); ?>",
+                tipo: "clasificaciones",
+                id: "<?php echo $elemento->Fk_Id_Tipo_Activo; ?>",
+                elemento_padre: $("#select_tipo_activo"),
+                elemento_hijo: $("#select_clasificacion"),
+                mensaje_padre: "Elija primero un tipo de activo...",
+                mensaje_hijo: "Elija la clasificación..."
+            }
+            select_por_defecto("select_tipo_activo", <?php echo $elemento->Fk_Id_Tipo_Activo; ?>)
+            cargar_lista_desplegable(datos);
+            select_por_defecto("select_clasificacion", <?php echo $elemento->Fk_Id_Clasificacion; ?>)
+
+            // Modelo
+        	datos = {
+                url: "<?php echo site_url('configuracion/obtener'); ?>",
+                tipo: "modelos",
+                id: "<?php echo $elemento->Fk_Id_Marca; ?>",
+                elemento_padre: $("#select_marca"),
+                elemento_hijo: $("#select_modelo"),
+                mensaje_padre: "Elija primero una marca...",
+                mensaje_hijo: "Elija un modelo..."
+            }
+            select_por_defecto("select_marca", <?php echo $elemento->Fk_Id_Marca; ?>)
+            cargar_lista_desplegable(datos);
+            select_por_defecto("select_modelo", <?php echo $elemento->Fk_Id_Modelo; ?>)
+
+            select_por_defecto("select_oficina", <?php echo $elemento->Fk_Id_Oficina; ?>)
+            
+            // Bloque
+        	datos = {
+                url: "<?php echo site_url('configuracion/obtener'); ?>",
+                tipo: "bloques",
+                id: "<?php echo $elemento->Fk_Id_Oficina; ?>",
+                elemento_padre: $("#select_oficina"),
+                elemento_hijo: $("#select_bloque"),
+                mensaje_padre: "Elija primero una oficina...",
+                mensaje_hijo: "Elija un bloque..."
+            }
+            cargar_lista_desplegable(datos);
+            select_por_defecto("select_bloque", <?php echo $elemento->Fk_Id_Bloque; ?>)
+
+            // Área
+        	datos = {
+                url: "<?php echo site_url('configuracion/obtener'); ?>",
+                tipo: "areas",
+                id: "<?php echo $elemento->Fk_Id_Bloque; ?>",
+                elemento_padre: $("#select_bloque"),
+                elemento_hijo: $("#select_area"),
+                mensaje_padre: "Elija primero un bloque...",
+                mensaje_hijo: "Elija un área..."
+            }
+            cargar_lista_desplegable(datos);
+            select_por_defecto("select_area", <?php echo $elemento->Fk_Id_Area; ?>)
+        })
+    </script>    
+<?php } ?>

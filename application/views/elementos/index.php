@@ -5,6 +5,7 @@
 	Modelos <span class="uk-label">Todos</span>
 	Estado <span class="uk-label">Todos</span>
 	Oficinas <span class="uk-label">Todas</span>
+	Usuarios <span class="uk-label">Todos</span>
 </center>
 <hr>
 
@@ -53,18 +54,6 @@
 	}
 
 	/**
-	 * Carga la interfaz para modificar el usuario asignado
-	 * 
-	 * @param  {int} id_elemento [Id del elemento de  inventario]
-	 * 
-	 * @return {void}
-	 */
-	function ver_usuario(id_elemento)
-	{
-		cargar_interfaz("cont_modal", "<?php echo site_url('elementos/cargar_interfaz'); ?>", {"tipo": "index_asignar_usuario", "id_elemento": id_elemento})
-	}
-
-	/**
 	 * Carga de interfaz de creación
 	 * 
 	 * @return {void}
@@ -72,6 +61,16 @@
 	function crear()
 	{
 		redireccionar(`<?php echo site_url('elementos/crear'); ?>`)
+	}
+
+	/**
+	 * Carga de interfaz de creación
+	 * 
+	 * @return {void}
+	 */
+	function editar(id_elemento)
+	{
+		redireccionar(`<?php echo site_url('elementos/crear/'); ?>${id_elemento}`)
 	}
 
 	/**
@@ -84,6 +83,18 @@
 		imprimir_notificacion("<div uk-spinner></div> Cargando elementos...");
 
 		cargar_interfaz("cont_elementos", "<?php echo site_url('elementos/cargar_interfaz'); ?>", {"tipo": "index_lista"});
+	}
+
+	/**
+	 * Carga la interfaz para modificar el usuario asignado
+	 * 
+	 * @param  {int} id_elemento [Id del elemento de  inventario]
+	 * 
+	 * @return {void}
+	 */
+	function ver_usuario(id_elemento)
+	{
+		cargar_interfaz("cont_modal", "<?php echo site_url('elementos/cargar_interfaz'); ?>", {"tipo": "index_asignar_usuario", "id_elemento": id_elemento})
 	}
 
 	$(document).ready(function(){
