@@ -93,12 +93,9 @@ function cargar_lista_desplegable(datos){
 
     // Consulta de los valores, se recorren y se alimenta la lista desplegable
     valores = ajax(datos.url, {"tipo": datos.tipo, "id": datos.id}, "JSON");
-    // imprimir(valores);
 
     $.each(valores, function(clave, valor) {
         datos.elemento_hijo.append("<option value='" + valor.Pk_Id + "'>" + valor.Nombre + "</option>");
-        // datos.elemento_hijo.append($("<option></option>").attr("value",valor.Pk_Id).text(valor.Nombre)); 
-        // $("#select_area").append("<option value='0'>ok</option>"); 
     });
 
     // Se pone el foco en la siguiente lista desplegable
