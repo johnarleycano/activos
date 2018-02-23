@@ -324,6 +324,8 @@
             }
             cargar_lista_desplegable(datos);
             select_por_defecto("select_area", <?php echo $elemento->Fk_Id_Area; ?>)
+
+            $("#select_tipo_activo").focus()
         })
     </script>    
 <?php } ?>
