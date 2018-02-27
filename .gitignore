@@ -6,12 +6,11 @@
 # Creado por https://www.gitignore.io/api/codeigniter
 
 ### Archivos ###
-#index.php
+index.php
 #commits.txt
 
 ### Carpetas ###
-##user_guide/
+archivos/elementos/
 ##application/config/
 
 # Fin de https://www.gitignore.io/api/codeigniter
-index\.php
