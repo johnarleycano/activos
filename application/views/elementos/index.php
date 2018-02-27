@@ -74,6 +74,16 @@
 	}
 
 	/**
+	 * Carga de interfaz de creación
+	 * 
+	 * @return {void}
+	 */
+	function foto(id_elemento)
+	{
+		cargar_interfaz(`cont_foto${id_elemento}`, "<?php echo site_url('elementos/cargar_interfaz'); ?>", {"tipo": "foto", "id_elemento": id_elemento})
+	}
+
+	/**
 	 * Lista todos los registros disponibles
 	 * @return [void]
 	 */

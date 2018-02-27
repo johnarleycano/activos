@@ -85,6 +85,12 @@ class Elementos extends CI_Controller {
                 case "index_lista":
                     $this->load->view("elementos/listar");
                 break;
+
+                case "foto":
+                    $this->data["id_elemento"] = $this->input->post("id_elemento");
+
+                    $this->load->view("elementos/foto", $this->data);
+                break;
             }
         } else {
             // Si la peticion fue hecha mediante navegador, se redirecciona a la pagina de inicio
@@ -144,6 +150,37 @@ class Elementos extends CI_Controller {
             //Si la peticion fue hecha mediante navegador, se redirecciona a la pagina de inicio
             redirect('');
         } // if
+    }
+
+    function subir()
+    {
+        // Se toman los datos por POST
+        $tipo = $this->uri->segment(3);
+        $id_elemento = $this->uri->segment(4);
+
+        // Se establece el directorio principal de los elementos
+        $directorio = "./archivos/elementos/$id_elemento";
+
+        // Valida que el directorio exista. Si no existe,lo crea con el id obtenido
+        // con los permisos correspondientes
+        if( ! is_dir($directorio)){
+            @mkdir($directorio, 0777);
+        }
+
+        switch ($tipo) {
+            case 'foto':
+                foreach ($_FILES as $key){
+                    $archivo = new SplFileInfo($key['name']['0']);
+                    $extension = $archivo->getExtension();
+                    
+                    if (move_uploaded_file($key['tmp_name']["0"], "$directorio/foto.{$extension}")){
+
+                        // print json_encode($key['name']);
+                        echo $key['name']['0'];
+                    }
+                }
+            break;
+        }
     }
 }
 /* Fin del archivo Elementos.php */

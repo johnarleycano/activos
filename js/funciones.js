@@ -66,6 +66,15 @@ function botones(parametros)
     }
 }
 
+/**
+ * Carga de interfaz
+ * 
+ * @param  {string} contenedor 
+ * @param  {string} url        
+ * @param  {json} datos      
+ * 
+ * @return
+ */
 function cargar_interfaz(contenedor, url, datos)
 {
     // Carga de la interfaz
@@ -190,6 +199,65 @@ function redireccionar(url){
 function select_por_defecto(elemento, valor)
 {
     $('#' + elemento + ' option[value="' + valor + '"]').attr("selected", true);
+}
+
+function subir(tipo, url, id)
+{
+    let barra_progreso = document.getElementById('js-progressbar');
+
+    UIkit.upload('.js-upload', {
+        url: `${url}/${tipo}/${id}`,
+        multiple: false,
+        datatype: "html",
+        // allow : '*.(jpg|jpeg|gif|png)',
+        beforeSend: function () {
+            cerrar_notificaciones();
+            imprimir_notificacion(`<div uk-spinner></div> Subiendo ${tipo}...`);
+
+        },
+        beforeAll: function () {
+            // imprimir(arguments[0])
+            // console.log('beforeAll', arguments);
+        },
+        load: function () {
+
+        },
+        error: function (e) {
+            // console.log('error', arguments);
+        },
+        complete: function () {
+            // console.log('complete', arguments);
+        },
+
+        loadStart: function (e) {
+            // console.log('loadStart', arguments);
+
+            barra_progreso.removeAttribute('hidden');
+            barra_progreso.max = e.total;
+            barra_progreso.value = e.loaded;
+        },
+        progress: function (e) {
+            // console.log('progress', arguments);
+            barra_progreso.max = e.total;
+            barra_progreso.value = e.loaded;
+        },
+        loadEnd: function (e) {
+            // console.log('loadEnd', arguments);
+            barra_progreso.max = e.total;
+            barra_progreso.value = e.loaded;
+        },
+        completeAll: function (e) {
+
+            // $("#cont_subir").hide()
+            imprimir(e.response)
+            barra_progreso.setAttribute('hidden', 'hidden');
+
+            cerrar_notificaciones();
+            imprimir_notificacion(`${tipo} subida correctamente.`, "success")
+
+            $(`#cont_${tipo}${id}`).html("")
+        }
+    });
 }
 
 /**
