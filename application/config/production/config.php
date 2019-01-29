@@ -35,7 +35,7 @@ $config['id_aplicacion_sesion'] = 15;
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://activos.devimed.com.co/';
+$config['base_url'] = 'http://activos.devimed.com.co';
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@ $config['base_url'] = 'http://activos.devimed.com.co/';
 | variable so that it is blank.	
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
