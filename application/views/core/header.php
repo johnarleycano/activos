@@ -7,6 +7,9 @@
 <!-- Scripts -->
 <script src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
 
+<!-- Estilos -->
+<link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap -->
+
 <?php if(ENVIRONMENT === 'development') { ?>
 	<!-- Estilos -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/uikit.css" />
