@@ -1,11 +1,9 @@
-<?php $elementos = $this->elementos_model->obtener("elementos"); ?>
-
 <div id="cont_modal"></div>
 
-<div class="uk-child-width-1-3@m" uk-grid uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-card; delay: 100; repeat: true">
-    <?php foreach ($elementos as $elemento) { ?>
-    	<?php
-    	$ruta = "./archivos/elementos/{$elemento->Pk_Id}";
+<div class="uk-child-width-1-1@m" uk-grid uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-card; delay: 100; repeat: true">
+    <?php
+    foreach ($this->elementos_model->obtener("elementos") as $elemento) {
+    	$ruta = "./archivos/elementos/$elemento->Pk_Id";
     	$logo = (file_exists("$ruta/foto.jpg")) ? "$ruta/foto.jpg" : base_url()."img/logos/devimed.png" ;
     	?>
 	    <div>

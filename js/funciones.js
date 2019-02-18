@@ -188,19 +188,6 @@ function redireccionar(url){
     location.href = url;
 }
 
-/**
- * Pone un valor por defecto a un select
- * 
- * @param  {string} elemento Nombre del select
- * @param  {string} valor    Valor del option
- *
- * @return [void]
- */
-function select_por_defecto(elemento, valor)
-{
-    $('#' + elemento + ' option[value="' + valor + '"]').attr("selected", true);
-}
-
 function subir(tipo, url, id)
 {
     let barra_progreso = document.getElementById('js-progressbar');
