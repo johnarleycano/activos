@@ -80,7 +80,7 @@ Class Elementos_model extends CI_Model{
                     ->select(array(
                         'e.Pk_Id',
                         'e.Fk_Id_Estado',
-                        'LPAD( e.Pk_Id, 4, 0 ) Codigo',
+                        'e.Codigo',
                         'ma.Nombre Marca',
                         'mo.Nombre Modelo',
                         'e.Fk_Id_Area',
