@@ -29,6 +29,46 @@ class Configuracion extends CI_Controller {
         $this->load->model(array('configuracion_model'));
     }
 
+    /**
+     * Permite la inserción de datos en la base de datos 
+     * 
+     * @return [void]
+     */
+    function insertar()
+    {
+        //Se valida que la peticion venga mediante ajax y no mediante el navegador
+        if($this->input->is_ajax_request()){
+            // Datos vía POST
+            $datos = $this->input->post('datos');
+            $tipo = $this->input->post('tipo');
+
+            switch ($tipo) {
+                case "clasificacion":
+                	// Se inserta el registro y log en base de datos
+                    if ($this->configuracion_model->insertar($tipo, $datos)) echo $this->db->insert_id();
+                break;
+
+                case "color":
+                	// Se inserta el registro y log en base de datos
+                    if ($this->configuracion_model->insertar($tipo, $datos)) echo $this->db->insert_id();
+                break;
+
+                case "modelo":
+                	// Se inserta el registro y log en base de datos
+                    if ($this->configuracion_model->insertar($tipo, $datos)) echo $this->db->insert_id();
+                break;
+
+                case "proveedor":
+                	// Se inserta el registro y log en base de datos
+                    if ($this->configuracion_model->insertar($tipo, $datos)) echo $this->db->insert_id();
+                break;
+            }
+    	}else{
+            // Si la peticion fue hecha mediante navegador, se redirecciona a la pagina de inicio
+            redirect('');
+        }
+    }
+
 	/**
 	 * Obtiene registros de base de datos
 	 * y los retorna a las vistas

@@ -4,17 +4,17 @@
 <!-- Id del elemento (cuando se cree el registro) -->
 <input type="hidden" id="id_elemento" value="<?php echo $id_elemento; ?>">
 
-<div class="col-lg-6">
+<div class="col-md-6">
     <h4 class="uk-heading-line uk-text-right"><span>Características</span></h4>
 
-    <div class="col-lg-12">
+    <div class="col-md-12">
         <label class="uk-form-label" for="input_codigo">Código *</label>
         <div class="uk-form-controls">
-            <input class="uk-input" type="text" min="0" id="input_codigo" title="Código" autofocus>
+            <input class="uk-input" type="text" min="0" id="input_codigo" title="Código" value="<?php if(isset($elemento->Codigo)) echo $elemento->Codigo; ?>" autofocus>
         </div>
     </div>
 	
-	<div class="col-lg-6">
+	<div class="col-md-12">
 		<label class="uk-form-label" for="select_tipo_activo">Tipo de activo *</label>
 		<div class="uk-form-controls">
             <select class="uk-select" id="select_tipo_activo" title="Tipo de activo">
@@ -26,7 +26,7 @@
         </div>
 	</div>
 
-	<div class="col-lg-6">
+	<div class="col-md-6">
 		<label class="uk-form-label" for="select_clasificacion">Clasificación *</label>
 		<div class="uk-form-controls">
             <select class="uk-select" id="select_clasificacion" title="Clasificación">
@@ -35,7 +35,12 @@
         </div>
 	</div>
 
-	<div class="col-lg-12">
+	<div class="col-md-6">
+        <label class="uk-form-label" for="input_otra_clasificacion">Otra clasificación</label>
+        <input class="uk-input" type="text" id="input_otra_clasificacion" title="Otra clasificación">
+    </div>
+
+	<div class="col-md-12">
 		<label class="uk-form-label" for="select_marca">Marca *</label>
 	    <div class="uk-form-controls">
 	        <select class="uk-select" id="select_marca" title="Marca">
@@ -47,7 +52,7 @@
 	    </div>
     </div>
 
-	<div class="col-lg-12">
+	<div class="col-md-6">
 	    <label class="uk-form-label" for="select_modelo">Modelo *</label>
 	    <div class="uk-form-controls">
 	        <select class="uk-select" id="select_modelo" title="Modelo">
@@ -56,7 +61,12 @@
 	    </div>
     </div>
 
-    <div class="col-lg-12">
+	<div class="col-md-6">
+	    <label class="uk-form-label" for="input_otro_modelo">Otro modelo</label>
+        <input class="uk-input" type="text" id="input_otro_modelo" title="Otro modelo">
+    </div>
+
+    <div class="col-md-6">
         <label class="uk-form-label" for="select_color">Color *</label>
         <div class="uk-form-controls">
             <select class="uk-select" id="select_color" title="Color">
@@ -68,7 +78,12 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-md-6">
+        <label class="uk-form-label" for="input_otro_color">Otro color</label>
+        <input class="uk-input" type="text" id="input_otro_color" title="Otro color">
+    </div>
+
+    <div class="col-md-12">
         <label class="uk-form-label" for="select_estado">Estado *</label>
         <div class="uk-form-controls">
             <select class="uk-select" id="select_estado" title="Estado">
@@ -81,10 +96,10 @@
 	</div>
 </div>
 
-<div class="col-lg-6">
+<div class="col-md-6">
     <h4 class="uk-heading-line uk-text-right"><span>Ubicación</span></h4>
 	
-	<div class="col-lg-12">
+	<div class="col-md-6">
         <label class="uk-form-label" for="select_oficina">Oficina *</label>
         <div class="uk-form-controls">
             <select class="uk-select" id="select_oficina" title="Oficina">
@@ -96,7 +111,7 @@
         </div>
     </div>
     
-    <div class="col-lg-12">
+    <div class="col-md-6">
         <label class="uk-form-label" for="select_bloque">Bloque *</label>
         <div class="uk-form-controls">
             <select class="uk-select" id="select_bloque" title="Bloque">
@@ -105,7 +120,7 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-md-12">
         <label class="uk-form-label" for="select_area">Área *</label>
         <div class="uk-form-controls">
             <select class="uk-select" id="select_area" title="Área">
@@ -114,7 +129,7 @@
         </div>
     </div>
 	
-	<div class="col-lg-12">
+	<div class="col-md-6">
         <label class="uk-form-label" for="select_proveedor">Proveedor *</label>
         <div class="uk-form-controls">
             <select class="uk-select" id="select_proveedor" title="Proveedor">
@@ -126,27 +141,32 @@
         </div>
     </div>
 
-	<div class="col-lg-12">
-        <label class="uk-form-label" for="input_fecha_compra">Fecha de compra *</label>
+    <div class="col-md-6">
+        <label class="uk-form-label" for="input_otro_proveedor">Otro proveedor</label>
+        <input class="uk-input" type="text" id="input_otro_proveedor" title="Otro proveedor">
+    </div>
+
+	<div class="col-md-12">
+        <label class="uk-form-label" for="input_fecha_compra">Fecha de compra</label>
         <div class="uk-form-controls">
             <input class="uk-input" type="date" id="input_fecha_compra" title="Fecha de compra">
         </div>
     </div>
 
-	<div class="col-lg-12">
+	<div class="col-md-12">
         <label class="uk-form-label" for="input_valor">Valor</label>
         <div class="uk-form-controls">
             <input class="uk-input" type="number" min="0" id="input_valor" title="Valor">
         </div>
     </div>
+
+    <div class="col-md-12">
+	    <label class="uk-form-label" for="input_observaciones_tecnicas">Observaciones técnicas</label>
+		<textarea class="uk-textarea" id="input_observaciones_tecnicas" rows="5"></textarea>
+	</div>
 </div>
 
-<div class="col-lg-12">
-    <label class="uk-form-label" for="input_observaciones_tecnicas">Observaciones técnicas</label>
-	<textarea class="uk-textarea" id="input_observaciones_tecnicas" rows="6"></textarea>
-</div>
-
-<p class="col-lg-12">
+<p class="col-md-12">
 	<button class="uk-button uk-button-default uk-modal-close" type="button" onCLick="javascript:history.back()">Cancelar</button>
 	<button class="uk-button uk-button-primary" type="submit" onClick="javascript:guardar()">Guardar</button>
 </p>
@@ -161,40 +181,74 @@
 	{
 		let id_elemento = "<?php echo $id_elemento; ?>"
 
-		cerrar_notificaciones();
-		imprimir_notificacion("<div uk-spinner></div> Guardando el elemento...");
+		cerrar_notificaciones()
+		imprimir_notificacion("<div uk-spinner></div> Guardando el elemento...")
 
-		campos_obligatorios = {
+		let campos_obligatorios = {
 			"input_codigo": $("#input_codigo").val(),
-			"select_clasificacion": $("#select_clasificacion").val(),
-			"select_modelo": $("#select_modelo").val(),
-			"select_color": $("#select_color").val(),
 			"select_estado": $("#select_estado").val(),
 			"select_area": $("#select_area").val(),
 			"select_proveedor": $("#select_proveedor").val(),
 		}
-		// imprimir(campos_obligatorios);
+		// imprimir(campos_obligatorios, "tabla")
 		
-		// Si existen campos obligatorios sin diligenciar
-		if(validar_campos_obligatorios(campos_obligatorios)){
-			return false;
+		// Si especifica otra clasificación
+		if($("#input_otra_clasificacion").val() != "") {
+			// El campo obligatorio es el elemento padre
+			campos_obligatorios.select_tipo_activo = $("#select_tipo_activo").val()
+		} else {
+			// El campo obligatorio es el elemento hijo
+			campos_obligatorios.select_clasificacion = $("#select_clasificacion").val()
 		}
 
-		datos = {
+		// Si especifica otro modelo
+		if($("#input_otro_modelo").val() != "") {
+			// El campo obligatorio es el elemento padre
+			campos_obligatorios.select_marca = $("#select_marca").val()
+		} else {
+			// El campo obligatorio es el elemento hijo
+			campos_obligatorios.select_modelo = $("#select_modelo").val()
+		}
+
+		// Si no se especifica otro color, el campo obligatorio es el color
+		if($("#input_otro_color").val() == "") campos_obligatorios.select_color = $("#select_color").val()
+
+		// Si no se especifica otro proveedor, el campo obligatorio es el proveedor
+		if($("#input_otro_proveedor").val() == "") campos_obligatorios.select_proveedor = $("#select_proveedor").val()
+		
+		// Si existen campos obligatorios sin diligenciar
+		if(validar_campos_obligatorios(campos_obligatorios)) return false
+
+		var datos = {
 	    	"Codigo": $("#input_codigo").val(),
 	    	"Observaciones": $("#input_observaciones_tecnicas").val(),
-	    	"Fk_Id_Clasificacion": $("#select_clasificacion").val(),
-	    	"Fk_Id_Modelo": $("#select_modelo").val(),
-	    	"Fk_Id_Color": $("#select_color").val(),
 	    	"Fk_Id_Estado": $("#select_estado").val(),
 	    	"Fk_Id_Area": $("#select_area").val(),
-	    	"Fk_Id_Proveedor": $("#select_proveedor").val(),
 	    	"Fecha": "<?php echo date("Y-m-d H:i:s"); ?>",
 	    	"Fecha_Compra": $("#input_fecha_compra").val(),
 	    	"Valor": $("#input_valor").val(),
 	    	"Fk_Id_Usuario": "<?php echo $this->session->userdata('Pk_Id_Usuario'); ?>",
 	    }
-	    // imprimir(datos);
+
+	    // Clasificación
+	    let id_clasificacion = ($("#input_otra_clasificacion").val() != "") ? ajax("<?php echo site_url('configuracion/insertar'); ?>", {"tipo": "clasificacion", "datos": {Fk_Id_Tipo_Activo: $("#select_tipo_activo").val(), Nombre: $("#input_otra_clasificacion").val()}}, 'HTML') : $("#select_clasificacion").val()
+
+	    // Modelo
+	    let id_modelo = ($("#input_otro_modelo").val() != "") ? ajax("<?php echo site_url('configuracion/insertar'); ?>", {"tipo": "modelo", "datos": {Fk_Id_Marca: $("#select_marca").val(), Nombre: $("#input_otro_modelo").val()}}, 'HTML') : $("#select_modelo").val()
+
+	    // Color
+	    let id_color = ($("#input_otro_color").val() != "") ? ajax("<?php echo site_url('configuracion/insertar'); ?>", {"tipo": "color", "datos": {Nombre: $("#input_otro_color").val()}}, 'HTML') : $("#select_color").val()
+
+	    // Proveedor
+	    let id_proveedor = ($("#input_otro_proveedor").val() != "") ? ajax("<?php echo site_url('configuracion/insertar'); ?>", {"tipo": "proveedor", "datos": {Nombre: $("#input_otro_proveedor").val()}}, 'HTML') : $("#select_proveedor").val()
+
+	    // Seagregan los valores al arreglo
+	    datos.Fk_Id_Modelo = id_modelo
+	    datos.Fk_Id_Clasificacion = id_clasificacion
+	    datos.Fk_Id_Color = id_color
+	    datos.Fk_Id_Proveedor = id_proveedor
+
+	    // imprimir(datos)
 	    
 	    // Si trae un id de elemento
 	    if ($("#id_elemento").val() == "") {
@@ -206,7 +260,7 @@
         	ajax("<?php echo site_url('elementos/actualizar'); ?>", {"tipo": "elemento", "datos": datos, "id_elemento": $("#id_elemento").val()}, 'HTML');
 	    }
 
-		cerrar_notificaciones();
+		// cerrar_notificaciones();
 		imprimir_notificacion("Guardado.", "success");
 
 		redireccionar("<?php echo site_url('elementos'); ?>");
@@ -214,9 +268,9 @@
 
 	$(document).ready(function(){
 		$("form").on("submit", function(){
-			guardar();
+			guardar()
 
-			return false;
+			return false
 		});
 
 		// Cuando se elija el tipo de activo, se cargan las clasificaciones
@@ -230,8 +284,8 @@
 				mensaje_padre: "Elija primero un tipo de activo...",
 				mensaje_hijo: "Elija la clasificación..."
 			}
-			cargar_lista_desplegable(datos);
-		});
+			cargar_lista_desplegable(datos)
+		})
 
 		// Cuando se elija la marca, se cargan sus modelos
 		$("#select_marca").on("change", function(){
@@ -281,8 +335,8 @@
 <?php if ($elemento) { ?>
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#input_fecha_compra").val("<?php echo $elemento->Fecha_Compra; ?>");
-            $("#input_valor").val("<?php echo $elemento->Valor; ?>");
+            $("#input_fecha_compra").val("<?php echo $elemento->Fecha_Compra; ?>")
+            $("#input_valor").val("<?php echo $elemento->Valor; ?>")
 
             select_por_defecto("select_color", <?php echo $elemento->Fk_Id_Color; ?>)
             select_por_defecto("select_estado", <?php echo $elemento->Fk_Id_Estado; ?>)
@@ -299,7 +353,7 @@
                 mensaje_hijo: "Elija la clasificación..."
             }
             select_por_defecto("select_tipo_activo", <?php echo $elemento->Fk_Id_Tipo_Activo; ?>)
-            cargar_lista_desplegable(datos);
+            cargar_lista_desplegable(datos)
             select_por_defecto("select_clasificacion", <?php echo $elemento->Fk_Id_Clasificacion; ?>)
 
             // Modelo
@@ -312,11 +366,11 @@
                 mensaje_padre: "Elija primero una marca...",
                 mensaje_hijo: "Elija un modelo..."
             }
-            select_por_defecto("select_marca", <?php echo $elemento->Fk_Id_Marca; ?>)
+            select_por_defecto("select_marca", "<?php echo $elemento->Fk_Id_Marca; ?>")
             cargar_lista_desplegable(datos);
-            select_por_defecto("select_modelo", <?php echo $elemento->Fk_Id_Modelo; ?>)
+            select_por_defecto("select_modelo", "<?php echo $elemento->Fk_Id_Modelo; ?>")
 
-            select_por_defecto("select_oficina", <?php echo $elemento->Fk_Id_Oficina; ?>)
+            select_por_defecto("select_oficina", "<?php echo $elemento->Fk_Id_Oficina; ?>")
             
             // Bloque
         	datos = {

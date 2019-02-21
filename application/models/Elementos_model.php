@@ -59,13 +59,13 @@ Class Elementos_model extends CI_Model{
                     ->select(array(
                         'e.*',
                         'ce.Fk_Id_Tipo_Activo',
-                        'm.Pk_Id Fk_Id_Marca',
+                        'm.Fk_Id_Marca',
                         'a.Fk_Id_Bloque',
                         'b.Fk_Id_Oficina',
                     ))
                     ->from('elementos e')
                     ->join('clasificacion_elementos ce', 'e.Fk_Id_Clasificacion = ce.Pk_Id')
-                    ->join('marcas m', 'e.Fk_Id_Modelo = m.Pk_Id')
+                    ->join('modelos m', 'e.Fk_Id_Modelo = m.Pk_Id')
                     ->join('configuracion.areas a', 'e.Fk_Id_Area = a.Pk_Id')
                     ->join('configuracion.bloques b', 'a.Fk_Id_Bloque = b.Pk_Id')
                     ->where("e.Pk_Id", $id)

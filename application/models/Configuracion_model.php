@@ -13,6 +13,35 @@ Class Configuracion_model extends CI_Model{
     }
 
     /**
+     * Permite la inserción de datos en la base de datos 
+     * 
+     * @param  [string] $tipo  Tipo de inserción
+     * @param  [array]  $datos Datos que se van a insertar
+     * 
+     * @return [boolean]        true, false
+     */
+    function insertar($tipo, $datos)
+    {
+        switch ($tipo) {
+            case "clasificacion":
+                return $this->db->insert('clasificacion_elementos', $datos);
+            break;
+
+            case "color":
+                return $this->db->insert('colores', $datos);
+            break;
+
+            case "modelo":
+                return $this->db->insert('modelos', $datos);
+            break;
+
+            case "proveedor":
+                return $this->db->insert('proveedores', $datos);
+            break;
+        }
+    }
+
+    /**
 	 * Obtiene registros de base de datos
 	 * y los retorna a las vistas
 	 * 
@@ -63,6 +92,7 @@ Class Configuracion_model extends CI_Model{
 			case 'clasificaciones':
 				return $this->db
 					->order_by("Nombre")
+					->where("Fk_Id_Tipo_Activo", $id)
 					->get("clasificacion_elementos")->result();
 			break;
 
