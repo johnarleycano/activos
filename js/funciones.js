@@ -129,9 +129,28 @@ function cerrar_notificaciones()
  * 
  * @return [void]
  */
-function imprimir(mensaje)
+function imprimir(mensaje, tipo = null)
 {
-    console.log(mensaje);
+    switch(tipo) {
+        case "tabla":
+            console.table(mensaje)
+        break;
+
+        case "tiempo_inicio":
+            console.time(mensaje)
+        break;
+
+        case "tiempo_final":
+            console.timeEnd(mensaje)
+        break;
+
+        case "grupo":
+            console.group(mensaje)
+        break;
+
+        default:
+            console.log(mensaje)
+    }
 }
 
 /**
@@ -152,17 +171,12 @@ function imprimir_notificacion(mensaje, tipo = null)
 	}
 
 	// Si trae un tipo (para formatear el mensaje)
-	if (tipo) {
-		datos.status = tipo;
-	}
+	if (tipo) datos.status = tipo
 
-	// Si la notificación es una un mensaje de éxito
-	// if(tipo = "success"){
-		datos.timeout = 5000;
-	// }
+	datos.timeout = 5000
 
 	// Se lanza la notificación
-	UIkit.notification(datos);
+	UIkit.notification(datos)
 }
 
 /**
@@ -186,6 +200,17 @@ function limpiar_lista(elemento, mensaje){
  */
 function redireccionar(url){
     location.href = url;
+}
+
+/**
+ * Pone un valor por defecto a un select
+ * @param  {string}     elemento    Nombre del select
+ * @param  {string}     valor       Valor del option
+ * @param  {boolean}    Select2     Es un select de select2.js
+ */
+function select_por_defecto(elemento, valor)
+{
+     $(`#${elemento} option[value="${valor}"]`).attr("selected", true)
 }
 
 function subir(tipo, url, id)
