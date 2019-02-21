@@ -335,6 +335,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $("#input_fecha_compra").val("<?php echo $elemento->Fecha_Compra; ?>")
+            $("#input_observaciones_tecnicas").val("<?php echo $elemento->Observaciones; ?>")
             $("#input_valor").val("<?php echo $elemento->Valor; ?>")
 
             select_por_defecto("select_color", <?php echo $elemento->Fk_Id_Color; ?>)
