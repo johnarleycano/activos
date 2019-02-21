@@ -33,7 +33,7 @@
 <?php } ?>
 
 <!-- Estilos -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/estilos.css" /><!-- Estilos generales -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/estilos.css?<?php echo date('Ymdhis'); ?>" /><!-- Estilos generales -->
 
 <!-- Scripts -->
-<script src="<?php echo base_url(); ?>js/funciones.js"></script> <!-- Funciones generales -->
+<script src="<?php echo base_url(); ?>js/funciones.js?<?php echo date('Ymdhis'); ?>"></script> <!-- Funciones generales -->
