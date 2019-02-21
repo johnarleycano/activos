@@ -188,7 +188,6 @@
 			"input_codigo": $("#input_codigo").val(),
 			"select_estado": $("#select_estado").val(),
 			"select_area": $("#select_area").val(),
-			"select_proveedor": $("#select_proveedor").val(),
 		}
 		// imprimir(campos_obligatorios, "tabla")
 		
