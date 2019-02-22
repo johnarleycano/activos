@@ -7,18 +7,18 @@ foreach ($this->elementos_model->obtener("elementos") as $elemento) {
 	$logo = (file_exists("$ruta/foto.jpg")) ? "$ruta/foto.jpg" : base_url()."img/logos/devimed.png" ;
 	?>
 
-	<div style=" display: inline-block; vertical-align: middle; width: 100px;">
+	<div style="display: inline-block; vertical-align: middle; width: 100px;">
 		<img class="uk-border-rounded" id="foto<?php echo $elemento->Pk_Id; ?>" src="<?php echo $logo; ?>" onClick="javascript:foto(<?php echo $elemento->Pk_Id; ?>);" style="cursor: pointer; vertical-align: middle;">
 	</div>
 
 	<div style="display: inline-block;  vertical-align: middle; width: 60%;">
-		<p style="height: 30px; margin: 0; padding: 0; font-size: 1.5em;">
+		<p style="border: 1px solid red; min-height: 30px; margin: 0; padding: 0; font-size: 1.5em;">
 			<?php echo $elemento->Nombre; ?>
 		</p>
 
-		<p style="height: 25px; margin: 0; padding: 0; color: gray;">
+		<p style="border: 1px solid green; min-height: 25px; margin: 0; padding: 0; color: gray;">
 			<span class="uk-badge uk-label-<?php echo $elemento->Color; ?>"></span>
-			<?php echo "#$elemento->Codigo | $elemento->Marca | $elemento->Modelo"; ?> | <i class="fa fa-industry"></i> <?php echo $elemento->Oficina; ?> <i class="fa fa-home"></i> <?php echo $elemento->Area; ?> 
+			<?php echo "#$elemento->Codigo"; ?> | <i class="fa fa-industry"></i> <?php echo $elemento->Oficina; ?> <i class="fa fa-home"></i> <?php echo $elemento->Area; ?> 
 		</p>
 		
 		<p style="height: 20px; margin: 2px;">
