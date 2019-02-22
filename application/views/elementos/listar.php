@@ -18,7 +18,7 @@ foreach ($this->elementos_model->obtener("elementos") as $elemento) {
 
 		<p style="border: 1px solid green; min-height: 25px; margin: 0; padding: 0; color: gray;">
 			<span class="uk-badge uk-label-<?php echo $elemento->Color; ?>"></span>
-			<?php echo "#$elemento->Codigo"; ?> | <i class="fa fa-industry"></i> <?php echo $elemento->Oficina; ?> <i class="fa fa-home"></i> <?php echo $elemento->Area; ?> 
+			<?php echo "#$elemento->Codigo | $elemento->Marca"; ?> | <i class="fa fa-industry"></i> <?php echo $elemento->Oficina; ?> <i class="fa fa-home"></i> <?php echo $elemento->Area; ?> 
 		</p>
 		
 		<p style="height: 20px; margin: 2px;">
