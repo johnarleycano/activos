@@ -1,5 +1,49 @@
 <div id="cont_modal"></div>
 
+<?php
+// Recorrido de los elementos
+foreach ($this->elementos_model->obtener("elementos") as $elemento) {
+	$ruta = "./archivos/elementos/$elemento->Pk_Id";
+	$logo = (file_exists("$ruta/foto.jpg")) ? "$ruta/foto.jpg" : base_url()."img/logos/devimed.png" ;
+	?>
+
+	<div style=" display: inline-block; vertical-align: middle; width: 100px;">
+		<img class="uk-border-rounded" id="foto<?php echo $elemento->Pk_Id; ?>" src="<?php echo $logo; ?>" onClick="javascript:foto(<?php echo $elemento->Pk_Id; ?>);" style="cursor: pointer; vertical-align: middle;">
+	</div>
+
+	<div style="display: inline-block;  vertical-align: middle; width: 60%;">
+		<p style="height: 30px; margin: 0; padding: 0; font-size: 1.5em;">
+			<?php echo $elemento->Nombre; ?>
+		</p>
+
+		<p style="height: 25px; margin: 0; padding: 0; color: gray;">
+			<span class="uk-badge uk-label-<?php echo $elemento->Color; ?>"></span>
+			<?php echo "#$elemento->Codigo | $elemento->Marca | $elemento->Modelo"; ?> | <i class="fa fa-industry"></i> <?php echo $elemento->Oficina; ?> <i class="fa fa-home"></i> <?php echo $elemento->Area; ?> 
+		</p>
+		
+		<p style="height: 20px; margin: 2px;">
+			<a onCLick="javascript:editar(<?php echo $elemento->Pk_Id; ?>)" uk-icon="icon: file-edit"></a>
+			<!-- <a href="#" uk-icon="icon: copy"></a> -->
+			<a onClick="javascript:foto(<?php echo $elemento->Pk_Id; ?>)" uk-icon="icon: camera"></a>
+			<a onClick="javascript:ver_usuario(<?php echo $elemento->Pk_Id; ?>)" uk-icon="icon: user"></a> <?php echo (isset($usuario->Pk_Id)) ? $usuario->Nombres : "" ; ?>
+		</p>
+	</div>
+	
+	<!-- <div style="border: 1px solid orange; display: inline-block; vertical-align: middle; width: 29%; position: right;"></div> -->
+	<p id="cont_foto<?php echo $elemento->Pk_Id; ?>"></p>
+
+    <hr style="margin: 5px;">
+<?php } ?>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Por defecto se carga el listado de registros
+		cerrar_notificaciones();
+	});
+</script>
+
+<?php exit(); ?>
+
 <div class="uk-child-width-1-1@m" uk-grid uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-card; delay: 100; repeat: true">
     <?php
     foreach ($this->elementos_model->obtener("elementos") as $elemento) {
@@ -42,10 +86,3 @@
 	    </div>
 	<?php } ?>
 </div>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		// Por defecto se carga el listado de registros
-		cerrar_notificaciones();
-	});
-</script>

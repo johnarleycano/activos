@@ -167,19 +167,15 @@ class Elementos extends CI_Controller {
             @mkdir($directorio, 0777);
         }
 
-        switch ($tipo) {
-            case 'foto':
-                foreach ($_FILES as $key){
-                    $archivo = new SplFileInfo($key['name']['0']);
-                    $extension = $archivo->getExtension();
-                    
-                    if (move_uploaded_file($key['tmp_name']["0"], "$directorio/foto.{$extension}")){
+        foreach ($_FILES as $key){
+            $archivo = new SplFileInfo($key['name']['0']);
+            $extension = $archivo->getExtension();
+            
+            if (move_uploaded_file($key['tmp_name']["0"], "$directorio/foto.{$extension}")){
 
-                        // print json_encode($key['name']);
-                        echo $key['name']['0'];
-                    }
-                }
-            break;
+                // print json_encode($key['name']);
+                echo $key['name']['0'];
+            }
         }
     }
 }

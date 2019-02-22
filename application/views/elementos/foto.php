@@ -17,7 +17,7 @@
 			// Se recarga la imagen
 			// $("#foto<?php // echo $id_elemento; ?>").attr("src", `<?php // echo base_url(); ?>archivos/elementos/${"<?php // echo $id_elemento; ?>"}/foto.jpg?dt=${new Date().getTime()}`)
 
-			redireccionar("");
+			redireccionar("elementos");
 	    })
 	})
 </script>
