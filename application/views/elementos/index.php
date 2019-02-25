@@ -28,11 +28,11 @@
 			"select_usuario": $("#select_usuario").val(),
 			"input_fecha_entrega": $("#input_fecha_entrega").val(),
 		}
-		imprimir(campos_obligatorios);
+		// imprimir(campos_obligatorios)
 		
 		// Si existen campos obligatorios sin diligenciar
 		if(validar_campos_obligatorios(campos_obligatorios)){
-			return false;
+			return false
 		}
 
 		datos = {
@@ -43,14 +43,14 @@
 	    	"Observaciones": $.trim($("#input_observaciones").val()),
 	    	"Fk_Id_Usuario": "<?php echo $this->session->userdata('Pk_Id_Usuario'); ?>",
 	    }
-	    imprimir(datos);
+	    // imprimir(datos)
 
-	    ajax("<?php echo site_url('elementos/insertar'); ?>", {"tipo": "asignacion_usuario", "datos": datos}, 'HTML');
+	    ajax("<?php echo site_url('elementos/insertar'); ?>", {"tipo": "asignacion_usuario", "datos": datos}, 'HTML')
 
 		cerrar_notificaciones();
-		imprimir_notificacion("Guardado.", "success");
+		imprimir_notificacion("Guardado.", "success")
 
-		redireccionar("<?php echo site_url('elementos'); ?>");
+		redireccionar("<?php echo site_url('elementos'); ?>")
 	}
 
 	/**

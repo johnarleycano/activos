@@ -152,6 +152,30 @@ class Elementos extends CI_Controller {
         } // if
     }
 
+    /**
+     * Obtiene registros de base de datos
+     * y los retorna a las vistas
+     * 
+     * @return [vois]
+     */
+    function obtener()
+    {
+        //Se valida que la peticion venga mediante ajax y no mediante el navegador
+        if($this->input->is_ajax_request()){
+            $tipo = $this->input->post("tipo");
+            $id = $this->input->post("id");
+
+            switch ($tipo) {
+                case "elemento":
+                    print json_encode($this->elementos_model->obtener($tipo, $id));
+                break;
+            }
+        } else {
+            // Si la peticion fue hecha mediante navegador, se redirecciona a la pagina de inicio
+            redirect('');
+        }
+    }
+
     function subir()
     {
         // Se toman los datos por POST
@@ -159,24 +183,21 @@ class Elementos extends CI_Controller {
         $id_elemento = $this->uri->segment(4);
 
         // Se establece el directorio principal de los elementos
-        $directorio = "./archivos/elementos/$id_elemento";
-
-        // Valida que el directorio exista. Si no existe,lo crea con el id obtenido
-        // con los permisos correspondientes
-        if( ! is_dir($directorio)){
-            @mkdir($directorio, 0777);
-        }
+        $directorio = "./archivos/elementos";
 
         foreach ($_FILES as $key){
             $archivo = new SplFileInfo($key['name']['0']);
             $extension = $archivo->getExtension();
             
-            if (move_uploaded_file($key['tmp_name']["0"], "$directorio/foto.{$extension}")){
+            if (move_uploaded_file($key['tmp_name']["0"], "$directorio/$id_elemento.$extension")){
+                // Se agrega el nombre en base de datos
+                echo $this->elementos_model->actualizar("elemento", $id_elemento, array("Foto" => "$id_elemento.$extension"));
 
-                // print json_encode($key['name']);
-                echo $key['name']['0'];
+                // echo $key['name']['0'];
             }
         }
+
+        echo "ok";
     }
 }
 /* Fin del archivo Elementos.php */

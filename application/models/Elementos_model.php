@@ -80,7 +80,7 @@ Class Elementos_model extends CI_Model{
                     ->select(array(
                         'e.Pk_Id',
                         'e.Fk_Id_Estado',
-                        'e.Codigo',
+                        'LPAD(e.Codigo, 5, 0) Codigo',
                         'ma.Nombre Marca',
                         'mo.Nombre Modelo',
                         'e.Fk_Id_Area',
@@ -102,6 +102,7 @@ Class Elementos_model extends CI_Model{
                     ->join('configuracion.bloques b', 'a.Fk_Id_Bloque = b.Pk_Id')
                     ->join('configuracion.tipos_bloques tb', 'b.Fk_Id_Tipo_Bloque = tb.Pk_Id')
                     ->join('configuracion.oficinas o', 'b.Fk_Id_Oficina = o.Pk_Id')
+                    ->order_by('e.Pk_Id')
                     ;
                 
                 // return $this->db->get_compiled_select(); // string de la consulta

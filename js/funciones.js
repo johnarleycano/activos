@@ -221,6 +221,7 @@ function subir(tipo, url, id)
         url: `${url}/${tipo}/${id}`,
         multiple: false,
         datatype: "html",
+        async: false,
         // allow : '*.(jpg|jpeg|gif|png)',
         beforeSend: function () {
             cerrar_notificaciones();
@@ -261,13 +262,14 @@ function subir(tipo, url, id)
         completeAll: function (e) {
 
             // $("#cont_subir").hide()
-            imprimir(e.response)
+            // imprimir(e.response)
             barra_progreso.setAttribute('hidden', 'hidden');
 
             cerrar_notificaciones();
             imprimir_notificacion(`${tipo} subida correctamente.`, "success")
 
             $(`#cont_${tipo}${id}`).html("")
+
         }
     });
 }

@@ -3,8 +3,8 @@
 <?php
 // Recorrido de los elementos
 foreach ($this->elementos_model->obtener("elementos") as $elemento) {
-	$ruta = "./archivos/elementos/$elemento->Pk_Id";
-	$logo = (file_exists("$ruta/foto.jpg")) ? "$ruta/foto.jpg" : base_url()."img/logos/devimed.png" ;
+	$ruta = "./archivos/elementos";
+	$logo = (file_exists("$ruta/$elemento->Pk_Id.jpg")) ? "$ruta/$elemento->Pk_Id.jpg" : "$ruta/logo_devimed.png" ;
 	?>
 
 	<div style="display: inline-block; vertical-align: middle; width: 100px;">

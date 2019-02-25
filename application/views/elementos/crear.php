@@ -219,7 +219,7 @@
 		if(validar_campos_obligatorios(campos_obligatorios)) return false
 
 		var datos = {
-	    	"Codigo": $("#input_codigo").val(),
+	    	"Codigo": $.trim($("#input_codigo").val()),
 	    	"Observaciones": $("#input_observaciones_tecnicas").val(),
 	    	"Fk_Id_Estado": $("#select_estado").val(),
 	    	"Fk_Id_Area": $("#select_area").val(),
