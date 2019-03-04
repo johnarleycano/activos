@@ -76,6 +76,9 @@ Class Elementos_model extends CI_Model{
             break;
 
             case 'elementos':
+                // Si tiene contador, limita la cantidad de registros
+                if(isset($id['contador'])) $this->db->limit(15, $id['contador']);
+
                 $this->db
                     ->select(array(
                         'e.Pk_Id',
@@ -90,7 +93,7 @@ Class Elementos_model extends CI_Model{
                         'tb.Nombre Bloque',
                         'o.Nombre Oficina', 
                         'ee.Nombre Estado', 
-                        'ce.Nombre',
+                        'ce.Nombre Nombre',
                     ))
                     ->from('elementos e')
                     ->join('modelos mo', 'e.Fk_Id_Modelo = mo.Pk_Id')
@@ -103,7 +106,21 @@ Class Elementos_model extends CI_Model{
                     ->join('configuracion.tipos_bloques tb', 'b.Fk_Id_Tipo_Bloque = tb.Pk_Id')
                     ->join('configuracion.oficinas o', 'b.Fk_Id_Oficina = o.Pk_Id')
                     ->order_by('e.Pk_Id')
+                ;
+
+                if(isset($id['busqueda'])){
+                    $this->db
+                        ->or_having("Codigo LIKE '%{$id["busqueda"]}%'")
+                        ->or_having("Marca LIKE '%{$id["busqueda"]}%'")
+                        ->or_having("Modelo LIKE '%{$id["busqueda"]}%'")
+                        ->or_having("Area LIKE '%{$id["busqueda"]}%'")
+                        ->or_having("Color LIKE '%{$id["busqueda"]}%'")
+                        ->or_having("Bloque LIKE '%{$id["busqueda"]}%'")
+                        ->or_having("Oficina LIKE '%{$id["busqueda"]}%'")
+                        ->or_having("Estado LIKE '%{$id["busqueda"]}%'")
+                        ->or_having("Nombre LIKE '%{$id["busqueda"]}%'")
                     ;
+                }
                 
                 // return $this->db->get_compiled_select(); // string de la consulta
                 return $this->db->get()->result();

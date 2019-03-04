@@ -83,7 +83,18 @@ class Elementos extends CI_Controller {
                 break;
 
                 case "index_lista":
-                    $this->load->view("elementos/listar");
+                    $this->data['busqueda'] = $this->input->post('busqueda');
+                    $this->data['contador'] = $this->input->post('contador');
+                    $this->load->view("elementos/listar", $this->data);
+                break;
+
+                case 'index_lista_dinamica':
+                    // Se toman valores que vienen por post
+                    $this->data['busqueda'] = $this->input->post('busqueda');
+                    $this->data['contador'] = $this->input->post('contador');
+                    
+                    // Se carga la vista
+                    $this->load->view('elementos/datos', $this->data);
                 break;
 
                 case "foto":
